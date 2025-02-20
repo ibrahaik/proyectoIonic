@@ -2,15 +2,12 @@
     <ion-page>
         <ion-content>
 
-        <div class="logo-container">
-          <img src="/boyling.png" alt="¡Boyling!" class="logo"/>
-        </div>
+ 
             
-        <p class="custom-text">O regístrate <router-link to="/register" class="link">aquí</router-link></p>
         <div class="form-container"> 
     <div class="contenedor">        
     <ion-item class="custom-input">
-    <ion-input placeholder="Usuario o correo"></ion-input>
+    <ion-input placeholder="Email"></ion-input>
     </ion-item>
 
     <ion-item class="custom-input">
@@ -19,7 +16,7 @@
      </div>
 
      <ion-button expand="block" @click="goToHome" class="boton">
-      ENTRAR
+      ACCEDER
     </ion-button>
           </div>
         </ion-content>
@@ -48,10 +45,11 @@ const goToHome = () => {
   font-size: 14px;
 }
 .custom-input {
-  --background: #c5c4c4; /* Gris claro */
+  --background: #f3f3f3; /* Gris claro */
   --border-radius: 10px;
   --padding-start: 15px;
   --inner-padding-end: 15px;
+  font-size: 14px;
 }
 
 .custom-input ion-input {
@@ -97,7 +95,7 @@ const goToHome = () => {
   --background: #FF0;
   margin-top: 10px;
   color: black;
-  width: 50%;
+  width: 70%;
   --border-radius: 20px;
 }
 
