@@ -12,7 +12,7 @@
 
         <!-- Icono de login (se mantiene en el slot "end") -->
         <ion-buttons slot="end">
-          <ion-button router-link="/login" routerDirection="forward">
+          <ion-button router-link="/profile" routerDirection="forward">
             <ion-icon :icon="personCircleOutline" class="custom-ionic"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -42,7 +42,7 @@
             <ion-input placeholder="Destino"></ion-input>
           </ion-item>
         </div>
-        <ion-button expand="block" class="submit-button">
+        <ion-button expand="block" class="submit-button" router>
           BUSCAR VUELO
         </ion-button>
       </div>

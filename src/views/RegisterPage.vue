@@ -7,20 +7,17 @@
         <div class="form-container"> 
     <div class="contenedor">        
     <ion-item class="custom-input">
-    <ion-input placeholder="Nombre"></ion-input>
+      <ion-input :value="name" @input="e => name = e.target.value" placeholder="Nombre"></ion-input>    </ion-item>
+
+    <ion-item class="custom-input">
+      <ion-input :value="lastName" @input="e => lastName = e.target.value" placeholder="Apellidos"></ion-input>
     </ion-item>
 
     <ion-item class="custom-input">
-    <ion-input placeholder="Apellidos"></ion-input>
-    </ion-item>
+      <ion-input :value="email" @input="e => email = e.target.value" placeholder="Email"></ion-input>    </ion-item>
 
     <ion-item class="custom-input">
-    <ion-input placeholder="Email"></ion-input>
-    </ion-item>
-
-    <ion-item class="custom-input">
-    <ion-input type="password" placeholder="Contraseña"></ion-input>
-    </ion-item>
+      <ion-input :value="password" @input="e => password = e.target.value" type="password" placeholder="Contraseña"></ion-input>    </ion-item>
      </div>
 
      <div class="terms-box">
@@ -37,9 +34,11 @@
 </template>
 
 <script setup>
+
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+
 
 const goToHome = () => {
   router.push('/home').then(() => {

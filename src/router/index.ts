@@ -4,11 +4,13 @@ import HomePage from '../views/HomePage.vue'
 import LoginPage from '../views/LoginPage.vue'
 import RegisterPage from '@/views/RegisterPage.vue';
 import StartPage from '@/views/StartPage.vue';
+import ProfilePage from '@/views/ProfilePage.vue';
+import IdaPage from '@/views/IdaPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/start'
   },
   {
     path: '/home',
@@ -32,6 +34,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/start',
     name: 'Start',
     component: StartPage
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: ProfilePage
+  },
+  {
+    path: '/ida',
+    name: 'Ida',
+    component: IdaPage
   }
 ]
 
