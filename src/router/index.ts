@@ -6,6 +6,13 @@ import RegisterPage from '@/views/RegisterPage.vue';
 import StartPage from '@/views/StartPage.vue';
 import ProfilePage from '@/views/ProfilePage.vue';
 import IdaPage from '@/views/IdaPage.vue';
+import OriginPage from '@/views/OriginPage.vue';
+import PassengerPage from '@/views/PassengerPage.vue';
+import SeatPage from '@/views/SeatPage.vue';
+import PaymentPage from '@/views/PaymentPage.vue';
+import ReservationPage from '@/views/ReservationPage.vue';
+import HelpPage from '@/views/HelpPage.vue';
+import FlightPage from '@/views/FlightPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -44,6 +51,41 @@ const routes: Array<RouteRecordRaw> = [
     path: '/ida',
     name: 'Ida',
     component: IdaPage
+  },
+  {
+    path: '/origin',
+    name: 'Origin',
+    component: OriginPage
+  },
+  {
+    path: '/passenger',
+    name: 'Passenger',
+    component: PassengerPage
+  },
+  {
+    path: '/seat',
+    name: 'Seat',
+    component: SeatPage
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: PaymentPage
+  },
+  {
+    path: '/reservation',
+    name: 'Reservation',
+    component: ReservationPage
+  },
+  {
+    path: '/help',
+    name: 'Help',
+    component: HelpPage
+  },
+  {
+    path: 'flight',
+    name: 'Flight',
+    component: FlightPage
   }
 ]
 
