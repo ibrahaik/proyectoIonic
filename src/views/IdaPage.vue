@@ -10,7 +10,6 @@
     </ion-header>
 
     <ion-content>
-      <!-- Flight Type Header -->
       <div class="flight-header">
         <div class="left-section">
           <div class="flight-type">
@@ -27,7 +26,6 @@
         </ion-button>
       </div>
 
-      <!-- Menu Overlay -->
       <div v-if="isMenuOpen" class="menu-overlay active" @click="closeMenu">
         <div class="menu-content" @click.stop>
           <h2>EDITAR BÚSQUEDA</h2>
@@ -77,7 +75,6 @@
         </div>
       </div>
 
-      <!-- Date Selection -->
       <div class="date-selection">
         <ion-segment v-model="selectedDate" mode="md">
           <ion-segment-button value="25" class="date-option">
@@ -101,9 +98,7 @@
         </ion-segment>
       </div>
 
-      <!-- Contenido dinámico según la fecha seleccionada -->
       <div v-if="selectedDate === '25'">
-        <!-- Vista correspondiente a IdaPage (Lun 25 nov) -->
         <div class="flight-card">
           <div class="flight-times">
             <div class="time">13:15</div>
