@@ -10,7 +10,6 @@
       </ion-header>
   
       <ion-content>
-        <!-- Flight Type Header -->
         <div class="flight-header">
           <div class="left-section">
             <div class="flight-type">
@@ -27,7 +26,6 @@
           </ion-button>
         </div>
   
-        <!-- Menu Overlay -->
         <div v-if="isMenuOpen" class="menu-overlay active" @click="closeMenu">
         <div class="menu-content" @click.stop>
           <h2>EDITAR BÚSQUEDA</h2>
