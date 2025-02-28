@@ -7,7 +7,6 @@
           </ion-buttons>
           <ion-title>Ida</ion-title>
           <ion-buttons slot="end">
-            <ion-button class="cancel-button">Cancelar</ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
@@ -136,13 +135,84 @@
               <div class="seat available" @click="selectSeat('8F')">13,00</div>
             </div>
           </div>
+
+          <div class="seat-row">
+            <div class="left-seats">
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat available" @click="selectSeat('8C')">13,00</div>
+            </div>
+            <div class="row-number">9</div>
+            <div class="right-seats">
+              <div class="seat available" @click="selectSeat('8D')">13,00</div>
+              <div class="seat available" @click="selectSeat('8E')">13,00</div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+            </div>
+          </div>
         </div>
+
+        <div class="seat-row">
+            <div class="left-seats">
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat available" @click="selectSeat('8C')">13,00</div>
+            </div>
+            <div class="row-number">10</div>
+            <div class="right-seats">
+              <div class="seat available" @click="selectSeat('8D')">13,00</div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+            </div>
+          </div>
+
+          <div class="seat-row">
+            <div class="left-seats">
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+            </div>
+            <div class="row-number">11</div>
+            <div class="right-seats">
+              <div class="seat available" @click="selectSeat('8D')">13,00</div>
+              <div class="seat available" @click="selectSeat('8E')">13,00</div>
+              <div class="seat available" @click="selectSeat('8F')">13,00</div>
+            </div>
+          </div>
+
+          <div class="seat-row">
+            <div class="left-seats">
+              <div class="seat available" @click="selectSeat('8C')">13,00</div>
+              <div class="seat available" @click="selectSeat('8C')">13,00</div>
+              <div class="seat available" @click="selectSeat('8C')">13,00</div>
+            </div>
+            <div class="row-number">12</div>
+            <div class="right-seats">
+              <div class="seat available" @click="selectSeat('8D')">13,00</div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+            </div>
+          </div>
+
+          <div class="seat-row">
+            <div class="left-seats">
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat available" @click="selectSeat('8C')">13,00</div>
+            </div>
+            <div class="row-number">13</div>
+            <div class="right-seats">
+              <div class="seat available" @click="selectSeat('8D')">13,00</div>
+              <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
+              <div class="seat available" @click="selectSeat('8F')">13,00</div>
+            </div>
+          </div>
       </ion-content>
     </ion-page>
   </template>
   
   <script lang="ts">
   import { defineComponent, ref } from 'vue';
+  import { useRouter } from 'vue-router';
   import { 
     IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
     IonButton, IonButtons, IonBackButton, IonIcon
@@ -157,10 +227,12 @@
     },
     setup() {
       const selectedSeat = ref('');
-      
+      const router = useRouter();
+
       const selectSeat = (seatId: string) => {
         selectedSeat.value = seatId;
         console.log(`Selected seat: ${seatId}`);
+        router.push('/payment');
       };
       
       return {
@@ -178,6 +250,15 @@
     --background: white;
     --border-color: #e0e0e0;
   }
+
+  .seat.available {
+  transition: transform 0.2s ease-in-out; 
+}
+
+.seat.available:hover {
+  --transform: scale(1.2);
+}
+
   
   .cancel-button {
     color: #777;

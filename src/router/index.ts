@@ -13,6 +13,13 @@ import PaymentPage from '@/views/PaymentPage.vue';
 import ReservationPage from '@/views/ReservationPage.vue';
 import HelpPage from '@/views/HelpPage.vue';
 import FlightPage from '@/views/FlightPage.vue';
+import BajaPage from '@/views/BajaPage.vue';
+import Ida2Page from '@/views/Ida2Page.vue';
+import VueltaPage from '@/views/VueltaPage.vue';
+import DestionationPage from '@/views/DestionationPage.vue';
+import DestinationPage from '@/views/DestinationPage.vue';
+import EncuentroPage from '@/views/EncuentroPage.vue';
+import HelpLoginPage from '@/views/HelpLoginPage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -83,9 +90,34 @@ const routes: Array<RouteRecordRaw> = [
     component: HelpPage
   },
   {
-    path: 'flight',
+    path: '/flight',
     name: 'Flight',
     component: FlightPage
+  },
+  {
+    path: '/baja',
+    name: 'Baja',
+    component: BajaPage
+  },
+  {
+    path: '/vuelta',
+    name: 'Vuelta',
+    component: VueltaPage
+  },
+  {
+    path: '/destination',
+    name: 'Destination',
+    component: DestinationPage
+  },
+  {
+    path: '/encuentro',
+    name: 'Encuentro',
+    component: EncuentroPage
+  }, 
+  {
+    path: '/helplogin',
+    name: 'HelpLogin',
+    component: HelpLoginPage
   }
 ]
 

@@ -7,7 +7,6 @@
         </ion-buttons>
         <ion-title>Origen</ion-title>
         <ion-buttons slot="end">
-          <ion-button class="cancel-button">Cancelar</ion-button>
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
@@ -31,7 +30,7 @@
         <ion-list-header class="recent-searches-header">
           ANTES BUSCASTE...
         </ion-list-header>
-        
+
         <ion-item class="airport-item" button @click="selectAirport('LCG')">
           <div>
             <h2>A Coruña</h2>
@@ -40,113 +39,38 @@
           <div slot="end" class="airport-code">LCG</div>
         </ion-item>
 
-        <ion-list-header class="letter-header">
-          A
-        </ion-list-header>
-        
-        <ion-item class="airport-item" button @click="selectAirport('LCG')">
-          <div>
-            <h2>A Coruña</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">LCG</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('AGA')">
-          <div>
-            <h2>Agadir</h2>
-            <p>Marruecos</p>
-          </div>
-          <div slot="end" class="airport-code">AGA</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('ALC')">
-          <div>
-            <h2>Alicante</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">ALC</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('ALM')">
-          <div>
-            <h2>Almería</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">ALM</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('AMT')">
-          <div>
-            <h2>Ámsterdam</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">AMT</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('AGL')">
-          <div>
-            <h2>Argel</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">AGL</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('AST')">
-          <div>
-            <h2>Asturias (Oviedo)</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">AST</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('ATN')">
-          <div>
-            <h2>Atenas</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">ATN</div>
-        </ion-item>
-        
-        <ion-list-header class="letter-header">
-          B
-        </ion-list-header>
-        
-        <ion-item class="airport-item" button @click="selectAirport('BJL')">
-          <div>
-            <h2>Banjul</h2>
-            <p>Gambia</p>
-          </div>
-          <div slot="end" class="airport-code">BJL</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('BCN')">
-          <div>
-            <h2>Barcelona</h2>
-            <p>España</p>
-          </div>
-          <div slot="end" class="airport-code">BCN</div>
-        </ion-item>
-        
-        <ion-item class="airport-item" button @click="selectAirport('BSL')">
-          <div>
-            <h2>Basilea</h2>
-            <p>Suiza</p>
-          </div>
-          <div slot="end" class="airport-code">BSL</div>
-        </ion-item>
+        <div v-for="(letterCities, letter) in filteredCities" :key="letter">
+          <ion-list-header class="letter-header">
+            {{ letter }}
+          </ion-list-header>
+
+          <ion-item 
+            v-for="city in letterCities" 
+            :key="city.code" 
+            class="airport-item" 
+            button 
+            @click="selectAirport(city.code)"
+          >
+            <div>
+              <h2>{{ city.name }}</h2>
+              <p>{{ city.country }}</p>
+            </div>
+            <div slot="end" class="airport-code">{{ city.code }}</div>
+          </ion-item>
+        </div>
       </ion-list>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { 
   IonPage, IonHeader, IonToolbar, IonTitle, IonContent,
   IonButton, IonButtons, IonBackButton, IonSearchbar,
   IonList, IonItem, IonListHeader, IonLabel, IonCheckbox
 } from '@ionic/vue';
+import router from '@/router';
 
 export default defineComponent({
   name: 'OriginSelectionView',
@@ -159,14 +83,54 @@ export default defineComponent({
     const searchQuery = ref('');
     const directFlightsOnly = ref(false);
     
+    // Lista de ciudades y códigos
+    const cities = ref([
+      { name: 'A Coruña', country: 'España', code: 'LCG', directFlight: false },
+      { name: 'Agadir', country: 'Marruecos', code: 'AGA', directFlight: true },
+      { name: 'Alicante', country: 'España', code: 'ALC', directFlight: false },
+      { name: 'Almería', country: 'España', code: 'ALM', directFlight: true },
+      { name: 'Ámsterdam', country: 'España', code: 'AMT', directFlight: false },
+      { name: 'Argel', country: 'España', code: 'AGL', directFlight: true },
+      { name: 'Asturias (Oviedo)', country: 'España', code: 'AST', directFlight: false },
+      { name: 'Atenas', country: 'España', code: 'ATN', directFlight: true },
+      { name: 'Banjul', country: 'Gambia', code: 'BJL', directFlight: true },
+      { name: 'Barcelona', country: 'España', code: 'BCN', directFlight: true },
+      { name: 'Basilea', country: 'Suiza', code: 'BSL', directFlight: false },
+      { name: 'Canadá', country: 'Canadá', code: 'YUL', directFlight: false },
+      { name: 'Bogotá', country: 'Colombia', code: 'BOG', directFlight: true },
+      { name: 'La Habana', country: 'Cuba', code: 'HAV', directFlight: false },
+      { name: 'Copenhague', country: 'Dinamarca', code: 'CPH', directFlight: false },
+      { name: 'Santo Domingo', country: 'República Dominicana', code: 'SDQ', directFlight: true },
+      { name: 'Madrid', country: 'España', code: 'MAD', directFlight: false },
+      { name: 'Buenos Aires', country: 'Argentina', code: 'EZE', directFlight: true }
+    ]);
+    
+    // Filtrado de ciudades por nombre y vuelos directos
+    const filteredCities = computed(() => {
+      return cities.value
+        .filter(city => 
+          city.name.toLowerCase().includes(searchQuery.value.toLowerCase()) &&
+          (!directFlightsOnly.value || city.directFlight)
+        )
+        .reduce((acc, city) => {
+          const letter = city.name.charAt(0).toUpperCase();
+          if (!acc[letter]) {
+            acc[letter] = [];
+          }
+          acc[letter].push(city);
+          return acc;
+        }, {});
+    });
+
     const selectAirport = (code: string) => {
       console.log(`Selected airport: ${code}`);
-      // Here you would typically navigate back or emit an event
+      router.push('/ida');
     };
     
     return {
       searchQuery,
       directFlightsOnly,
+      filteredCities,
       selectAirport
     };
   }
@@ -211,7 +175,7 @@ ion-toolbar {
   background-color: #c4c4c4;
   color: #000;
   font-weight: bold;
-  padding: 8px 16px;
+  padding: px 10px;
   margin: 0;
 }
 
@@ -224,7 +188,7 @@ ion-toolbar {
 
 .airport-item h2 {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 

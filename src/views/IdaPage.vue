@@ -32,12 +32,24 @@
         <div class="menu-content" @click.stop>
           <h2>EDITAR BÚSQUEDA</h2>
           <div class="menuDestinos">
+            
+            <router-link to="/origin" class="no-underline">
             <div class="input-wrapper">
-              <ion-input placeholder="BCN"></ion-input>
-            </div>
-            <div class="input-wrapper">
-              <ion-input placeholder="IST"></ion-input>
-            </div>
+            <label class="input-label">
+            <span class="bold-italic">BCN</span>
+            <span class="small-text">Barcelona</span>
+          </label>           
+         </div>
+        </router-link>
+
+        <router-link to="/destination" class="no-underline">
+          <div class="input-wrapper">
+              <label class="input-label">
+                <span class="bold-italic">IST</span>
+                <span class="small-text">Estambul</span>
+              </label>
+              </div>   
+            </router-link>
           </div>
 
           <div class="menuFechas">
@@ -71,7 +83,7 @@
           <ion-segment-button value="25" class="date-option">
             <div class="date-content">
               <span class="day">Lun 25 nov</span>
-              <span class="price">100 €</span>
+              <span class="price">350 €</span>
             </div>
           </ion-segment-button>
           <ion-segment-button value="26" class="date-option">
@@ -89,23 +101,101 @@
         </ion-segment>
       </div>
 
-      <!-- Flight Card -->
-      <div class="flight-card">
-        <div class="flight-times">
-          <div class="time">12:00</div>
-          <div class="time">17:35</div>
+      <!-- Contenido dinámico según la fecha seleccionada -->
+      <div v-if="selectedDate === '25'">
+        <!-- Vista correspondiente a IdaPage (Lun 25 nov) -->
+        <div class="flight-card">
+          <div class="flight-times">
+            <div class="time">13:15</div>
+            <div class="time">18:35</div>
+          </div>
+          <div class="flight-route">
+            <div class="airport">BCN</div>
+            <div class="flight-type-label">Directo</div>
+            <div class="airport">IST</div>
+          </div>
+          <div class="flight-number">boyling VY6450</div>
+          <router-link to="/vuelta" class="no-underline" >
+          <ion-button expand="block" class="price-button" >
+            350 €
+          </ion-button>
+          </router-link>
         </div>
-        <div class="flight-route">
-          <div class="airport">BCN</div>
-          <div class="flight-type-label">Directo</div>
-          <div class="airport">IST</div>
+        <div class="flight-card">
+          <div class="flight-times">
+            <div class="time">14:00</div>
+            <div class="time">19:35</div>
+          </div>
+          <div class="flight-route">
+            <div class="airport">BCN</div>
+            <div class="flight-type-label">1 escala</div>
+            <div class="airport">IST</div>
+          </div>
+          <div class="flight-number">boyling VY7990</div>
+          <router-link to="/vuelta" class="no-underline">
+          <ion-button expand="block" class="price-button">
+            117 €
+          </ion-button>
+          </router-link>
         </div>
-        <div class="flight-number">boyling VY7850</div>
-        <ion-button expand="block" class="price-button">
-          95 €
-        </ion-button>
+        <div class="flight-card">
+          <div class="flight-times">
+            <div class="time">9:00</div>
+            <div class="time">20:35</div>
+          </div>
+          <div class="flight-route">
+            <div class="airport">BCN</div>
+            <div class="flight-type-label">2 escalas</div>
+            <div class="airport">IST</div>
+          </div>
+          <div class="flight-number">boyling VY6150</div>
+          <router-link to="/vuelta" class="no-underline">
+          <ion-button expand="block" class="price-button">
+            100 €
+          </ion-button>
+          </router-link>
+        </div>
+        <div class="flight-card">
+          <div class="flight-times">
+            <div class="time">6:00</div>
+            <div class="time">11:35</div>
+          </div>
+          <div class="flight-route">
+            <div class="airport">BCN</div>
+            <div class="flight-type-label">Directo</div>
+            <div class="airport">IST</div>
+          </div>
+          <div class="flight-number">boyling VY7530</div>
+          <router-link to="/vuelta" class="no-underline">
+          <ion-button expand="block" class="price-button">
+            203 €
+          </ion-button>
+          </router-link>
+        </div>
       </div>
 
+      <div v-else-if="selectedDate === '26'">
+        <!-- Vista correspondiente a IdaPage2 (Mar 26 nov) -->
+        <div class="flight-card">
+          <div class="flight-times">
+            <div class="time">20:45</div>
+            <div class="time">2:00</div>
+          </div>
+          <div class="flight-route">
+            <div class="airport">BCN</div>
+            <div class="flight-type-label">1 escala</div>
+            <div class="airport">IST</div>
+          </div>
+          <div class="flight-number">boyling VY39150</div>
+          <router-link to="/vuelta" class="no-underline">
+          <ion-button expand="block" class="price-button">
+            95 €
+          </ion-button>
+          </router-link>
+        </div>
+      </div>
+      
+      <!-- No se muestra contenido para selectedDate "27" ya que está deshabilitado -->
     </ion-content>
   </ion-page>
 </template>
@@ -174,13 +264,51 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
 ion-content {
   --background: url(/fondoVuelo.png) no-repeat center center fixed;
   background-size: cover;
+  background-color: #5EABD2;
+  overflow-y: auto;
 }
 
-/* Envoltorios de los input */
+@media screen and (min-width: 768px) {
+  ion-content {
+    --background: url(/vueloancho.png) no-repeat center center fixed;
+  }
+}
+
+
+router-link {
+  text-decoration: none;
+}
+
+router-link:focus, router-link:active {
+  text-decoration: none;
+}
+
+.input-label {
+      display: block;
+     
+    }
+    .small-text {
+      --display: block;
+      color: #aaa;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    .bold-italic {
+      font-weight: bold;
+      font-style: italic;
+      color: black;
+    }
+
+.prince-link {
+  text-decoration: none;
+}
+
 .input-wrapper {
+  display: block;
   border: 1px solid black;
   padding: 8px;
   margin-bottom: 16px;
@@ -224,7 +352,7 @@ ion-content {
 }
 
 .flight-header {
-  background: #b1aeae;
+  background: #238ed4;
   padding: 16px;
   display: flex;
   justify-content: space-between;
@@ -402,6 +530,8 @@ ion-segment {
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
   transform: translateY(100%);
   transition: transform 0.3s ease-in-out;
+  max-height: 80vh;
+  overflow-y:auto
 }
 
 .menu-overlay.active .menu-content {
@@ -412,4 +542,9 @@ ion-segment {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
 }
+
+.no-underline {
+  text-decoration: none !important;
+}
+
 </style>

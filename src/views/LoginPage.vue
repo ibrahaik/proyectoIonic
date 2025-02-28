@@ -1,41 +1,55 @@
 <template>
-    <ion-page>
-        <ion-content>
+  <ion-page>
+    <ion-content>
+      <div class="form-container"> 
+        <div class="contenedor">        
+          <ion-item class="custom-input">
+            <ion-input @ionInput="e => email = e.target.value" placeholder="Email"></ion-input>
+          </ion-item>
 
- 
-            
-        <div class="form-container"> 
-    <div class="contenedor">        
-    <ion-item class="custom-input">
-    <ion-input placeholder="Email"></ion-input>
-    </ion-item>
+          <ion-item class="custom-input">
+            <ion-input @ionInput="e => password = e.target.value" type="password" placeholder="Contraseña"></ion-input>
+          </ion-item>
+        </div>
 
-    <ion-item class="custom-input">
-    <ion-input type="password" placeholder="Contraseña"></ion-input>
-    </ion-item>
-     </div>
-
-     <ion-button expand="block" @click="goToHome" class="boton">
-      ACCEDER
-    </ion-button>
-          </div>
-        </ion-content>
-    </ion-page>
+        <ion-button expand="block" @click="goToHome" class="boton">
+          ACCEDER
+        </ion-button>
+      </div>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { alertController } from '@ionic/vue';
 
 const router = useRouter();
+const email = ref('');
+const password = ref('');
 
-const goToHome = () => {
-  router.push('/home').then(() => {
-    router.go(0); // Recarga la página
-  }).catch(err => console.error("Error en navegación:", err));
+const showAlert = async () => {
+  const alert = await alertController.create({
+    header: 'Acceso denegado',
+    message: 'Usuario o contraseña incorrectos.',
+    buttons: ['OK']
+  });
+  await alert.present();
 };
 
-</script>
+const goToHome = async () => {
+  console.log("Intento de login con:", { email: email.value, password: password.value });
 
+  if (email.value === 'admin' && password.value === 'admin') {
+    router.push('/home').then(() => {
+      router.go(0); // Recarga la página
+    }).catch(err => console.error("Error en navegación:", err));
+  } else {
+    await showAlert();
+  }
+};
+</script>
 <style scoped>
 
 .custom-text {
@@ -86,7 +100,7 @@ const goToHome = () => {
 
 
 .logo {
-  width: 200px; /* Ajusta según tu diseño */
+  width: 200px; 
   height: auto;
 }
 

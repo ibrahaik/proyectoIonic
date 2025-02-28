@@ -30,9 +30,11 @@
             <ion-icon :icon="ticket" class="ticket-icon"></ion-icon>
             <span>Con ganas de más?</span>
           </div>
+          <router-link to="/home" class="no_underline">
           <ion-button expand="block" class="another-flight-button">
             TOMAR OTRO VUELO
           </ion-button>
+          </router-link>
         </div>
   
         <div class="divider"></div>
@@ -128,6 +130,9 @@
     --border-width: 0 0 2px 0;
   }
   
+  .no_underline{
+    text-decoration: none;
+  }
   .logo-container {
     padding: 16px;
   }

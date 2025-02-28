@@ -9,7 +9,6 @@
       </ion-header>
   
       <ion-content>
-        <!-- Login Card -->
         <div class="login-card">
           <div class="login-info">
             <ion-icon :icon="informationCircle" class="info-icon"></ion-icon>
@@ -24,16 +23,16 @@
             <ion-input v-model="password" placeholder="contraseña" type="password"></ion-input>
           </ion-item>
           
+          <router-link to="/helplogin">
           <ion-button expand="block" class="access-button">
             ACCEDER
             <ion-icon :icon="arrowForward" slot="end"></ion-icon>
           </ion-button>
+          </router-link>
         </div>
   
-        <!-- FAQ Section -->
         <h2 class="faq-title">PREGUNTAS FREQ</h2>
         
-        <!-- FAQ Carousel -->
         <div class="carousel-container">
           <swiper
             :slides-per-view="1"
@@ -69,7 +68,6 @@
             </swiper-slide>
           </swiper>
           
-          <!-- Custom Pagination Indicator -->
           <div class="carousel-pagination">
             <div 
               v-for="(_, index) in 3" 
@@ -80,11 +78,8 @@
           </div>
         </div>
   
-        <!-- Logo -->
         <div class="logo-container">
-          <div class="logo">
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BOYLING_2C_IBRAHIM-JoU6LRkEBKeRGfXizX7jwYgP1Vev43.png" alt="Boyling logo" class="logo-image" />
-          </div>
+            <img src="/boyling.png" alt="Boyling logo" class="logo-image" />
         </div>
       </ion-content>
     </ion-page>
@@ -265,11 +260,10 @@
   }
   
   .logo-image {
-    width: 60px;
-    height: 60px;
+    width: 50%;
+    margin-right: 5%;
   }
   
-  /* Swiper custom styles */
   :deep(.swiper) {
     width: 100%;
     height: 100%;
@@ -282,6 +276,6 @@
   }
   
   :deep(.swiper-pagination) {
-    display: none; /* Hide default pagination */
+    display: none; 
   }
   </style>

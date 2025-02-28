@@ -63,7 +63,7 @@
             <ion-icon :icon="chevronForward" slot="end"></ion-icon>
           </ion-button>
   
-          <ion-button expand="block" type="submit" class="save-btn">
+          <ion-button expand="block" type="submit" class="save-btn" router-link="/home">
             GUARDAR
           </ion-button>
         </form>
@@ -79,6 +79,7 @@
     IonBackButton, IonButtons, IonAvatar, IonIcon
   } from '@ionic/vue'
   import { chevronForward } from 'ionicons/icons'
+import router from '@/router'
   
   const formData = ref({
     country: '',
@@ -92,10 +93,12 @@
   
   const handleSubmit = () => {
     console.log('Form submitted:', formData.value)
+    router.push('/home');
   }
   
   const handleUnsubscribe = () => {
     console.log('Unsubscribe clicked')
+    router.push('/baja');
   }
   </script>
   

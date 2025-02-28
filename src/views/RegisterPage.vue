@@ -1,51 +1,79 @@
 <template>
-    <ion-page>
-        <ion-content>
+  <ion-page>
+    <ion-content>
+      <div class="form-container">
+        <div class="contenedor">
+          <ion-item class="custom-input">
+            <ion-input @ionInput="e => name = e.target.value" placeholder="Nombre"></ion-input>
+          </ion-item>
 
- 
-            
-        <div class="form-container"> 
-    <div class="contenedor">        
-    <ion-item class="custom-input">
-      <ion-input :value="name" @input="e => name = e.target.value" placeholder="Nombre"></ion-input>    </ion-item>
+          <ion-item class="custom-input">
+            <ion-input @ionInput="e => lastName = e.target.value" placeholder="Apellidos"></ion-input>
+          </ion-item>
 
-    <ion-item class="custom-input">
-      <ion-input :value="lastName" @input="e => lastName = e.target.value" placeholder="Apellidos"></ion-input>
-    </ion-item>
+          <ion-item class="custom-input">
+            <ion-input @ionInput="e => email = e.target.value" placeholder="Email"></ion-input>
+          </ion-item>
 
-    <ion-item class="custom-input">
-      <ion-input :value="email" @input="e => email = e.target.value" placeholder="Email"></ion-input>    </ion-item>
+          <ion-item class="custom-input">
+            <ion-input @ionInput="e => password = e.target.value" type="password" placeholder="Contraseña"></ion-input>
+          </ion-item>
+        </div>
 
-    <ion-item class="custom-input">
-      <ion-input :value="password" @input="e => password = e.target.value" type="password" placeholder="Contraseña"></ion-input>    </ion-item>
-     </div>
+        <div class="terms-box">
+          <ion-checkbox v-model="acceptedTerms"></ion-checkbox>
+          <span class="terms-text">
+            Acepto los términos y condiciones y la política de privacidad de Boyling.
+          </span>
+        </div>
 
-     <div class="terms-box">
-        <ion-checkbox v-model="acceptedTerms"></ion-checkbox>
-        <span class="terms-text">Acepto los términos y condiciones y la política de privacidad de Boyling.</span>
+        <ion-button expand="block" @click="goToHome" class="boton">
+          DARME DE ALTA
+        </ion-button>
       </div>
-
-     <ion-button expand="block" @click="goToHome" class="boton">
-      DARME DE ALTA
-    </ion-button>
-          </div>
-        </ion-content>
-    </ion-page>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script setup>
-
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { alertController } from '@ionic/vue';
 
 const router = useRouter();
 
+const name = ref('');
+const lastName = ref('');
+const email = ref('');
+const password = ref('');
+const acceptedTerms = ref(false);
 
-const goToHome = () => {
+const showAlert = async () => {
+  const alert = await alertController.create({
+    header: 'Campos vacíos',
+    message: 'Por favor, completa todos los campos antes de continuar.',
+    buttons: ['OK']
+  });
+  await alert.present();
+};
+
+const goToHome = async () => {
+  console.log("Valores actuales:", {
+    name: name.value,
+    lastName: lastName.value,
+    email: email.value,
+    password: password.value
+  });
+
+  if (!name.value.trim() || !lastName.value.trim() || !email.value.trim() || !password.value.trim()) {
+    await showAlert();
+    return;
+  }
+
   router.push('/home').then(() => {
     router.go(0); // Recarga la página
   }).catch(err => console.error("Error en navegación:", err));
 };
-
 </script>
 
 <style scoped>
