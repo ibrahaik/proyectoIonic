@@ -9,14 +9,12 @@
       </ion-header>
   
       <ion-content>
-        <!-- Logo -->
         <div class="logo-container">
           <h1 class="logo">BOYLING<span class="yellow-dot"></span></h1>
         </div>
         
         <div class="divider"></div>
   
-        <!-- Confirmation Message -->
         <div class="confirmation-message">
           <ion-icon :icon="checkmarkCircle" class="confirmation-icon"></ion-icon>
           <h2 class="confirmation-text">Hola Ibra, reserva confirmada.</h2>
@@ -24,7 +22,6 @@
   
         <div class="short-divider"></div>
   
-        <!-- Take Another Flight -->
         <div class="another-flight">
           <div class="ticket-icon-container">
             <ion-icon :icon="ticket" class="ticket-icon"></ion-icon>
@@ -39,7 +36,6 @@
   
         <div class="divider"></div>
   
-        <!-- Outbound Flight -->
         <div class="flight-card">
           <div class="reservation-code">
             <span>CÓDIGO DE RESERVA:</span>
