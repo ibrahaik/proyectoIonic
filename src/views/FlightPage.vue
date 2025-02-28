@@ -59,7 +59,6 @@
     </ion-header>
 
     <ion-content class="ion-padding bg-vueling-white">
-      <!-- Buscador -->
       <div class="mb-4">
         <ion-searchbar 
           placeholder="Buscar por destino o número de vuelo" 
@@ -68,7 +67,6 @@
         ></ion-searchbar>
       </div>
       
-      <!-- Información de vuelos -->
       <div class="flight-list-container">
         <div class="mb-2 flex justify-between items-center">
           <h2 class="text-lg font-bold text-vueling-black">{{ filteredFlights.length }} vuelos disponibles</h2>
@@ -78,7 +76,6 @@
           </ion-button>
         </div>
         
-        <!-- Lista de vuelos scrollable -->
         <div class="flight-list">
           <transition-group name="flight-item">
             <ion-card 
@@ -88,7 +85,6 @@
               @click="selectFlight(flight)"
             >
               <div class="flight-card-content">
-                <!-- Información principal del vuelo -->
                 <div class="flight-main-info">
                   <div class="flight-time-container">
                     <div class="flight-time">{{ flight.time }}</div>
@@ -106,7 +102,6 @@
                   </div>
                 </div>
                 
-                <!-- Detalles adicionales -->
                 <div class="flight-details" v-if="flight.expanded">
                   <div class="flight-details-grid">
                     <div class="detail-item">
