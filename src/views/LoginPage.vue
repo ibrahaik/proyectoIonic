@@ -38,7 +38,6 @@ const goToHome = () => {
 
 <style scoped>
 
-
 .custom-text {
   margin-top: 60%;
   margin-left: 40px;
