@@ -13,13 +13,11 @@
     </ion-header>
   
     <ion-content class="ion-padding">
-      <!-- Info Notice -->
       <div class="info-notice">
         <ion-icon :icon="informationCircle" class="info-icon"></ion-icon>
         <span>Introduce los datos tal y como figuran en el documento de identidad.</span>
       </div>
   
-      <!-- Passenger Section -->
       <div class="passenger-section">
         <div class="passenger-header">
           <ion-icon :icon="person" class="person-icon"></ion-icon>
@@ -39,7 +37,6 @@
         <div v-if="!passenger.lastName" class="error-message">Este campo es obligatorio</div>
       </div>
   
-      <!-- Contact Section -->
       <div class="section-divider"></div>
       
       <div class="contact-section">
@@ -84,7 +81,6 @@
         <div v-if="!contact.email" class="error-message">Este campo es obligatorio</div>
       </div>
   
-      <!-- Promotions Section -->
       <div class="promo-section">
         <h3>¡No te pierdas nada! Entérate de nuestras promociones y descuentos.</h3>
         
@@ -97,12 +93,10 @@
         </div>
       </div>
   
-      <!-- Logo -->
       <div class="logo-container">
           <img src="/boyling.png" alt="Boyling logo" class="logo-image" />
       </div>
   
-      <!-- Footer -->
       <ion-footer class="footer">
         <div class="price-container">
           <div class="price-label">Total reserva</div>
@@ -116,7 +110,6 @@
       </ion-footer>
     </ion-content>
   
-    <!-- Alert for cancellation -->
     <ion-alert
       :is-open="showAlert"
       header="Confirmación"
