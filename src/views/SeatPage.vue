@@ -12,13 +12,11 @@
       </ion-header>
   
       <ion-content class="ion-padding">
-        <!-- Passenger Info -->
         <div class="passenger-info">
           <ion-icon :icon="person" class="person-icon"></ion-icon>
           <span>Ibrahim haik</span>
         </div>
   
-        <!-- Seat Map Header -->
         <div class="seat-map-header">
           <div class="left-seats">
             <div class="seat-letter">A</div>
@@ -33,7 +31,6 @@
           </div>
         </div>
   
-        <!-- Seat Class Info -->
         <div class="seat-class">
           <div class="class-header">
             <h2>Space one <span class="yellow-dot"></span></h2>
@@ -43,9 +40,7 @@
           <p class="class-features">Emarque prioritario + 2 piezas de equipaje a bordo</p>
         </div>
   
-        <!-- Seat Map -->
         <div class="seat-map">
-          <!-- Row 1 -->
           <div class="seat-row">
             <div class="left-seats">
               <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
@@ -60,7 +55,6 @@
             </div>
           </div>
   
-          <!-- Row 2 -->
           <div class="seat-row">
             <div class="left-seats">
               <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
@@ -75,7 +69,6 @@
             </div>
           </div>
   
-          <!-- Row 3 -->
           <div class="seat-row">
             <div class="left-seats">
               <div class="seat available" @click="selectSeat('2A')">13,00</div>
@@ -90,7 +83,6 @@
             </div>
           </div>
   
-          <!-- Row 4 -->
           <div class="seat-row">
             <div class="left-seats">
               <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
@@ -105,7 +97,6 @@
             </div>
           </div>
   
-          <!-- Row 5 -->
           <div class="seat-row">
             <div class="left-seats">
               <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
@@ -120,8 +111,6 @@
             </div>
           </div>
   
-          <!-- Additional rows would continue here -->
-          <!-- Row 8 (example of a row with multiple available seats) -->
           <div class="seat-row">
             <div class="left-seats">
               <div class="seat unavailable"><ion-icon :icon="close"></ion-icon></div>
